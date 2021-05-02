@@ -38,7 +38,7 @@ mvn package
 2- Run the built JAR file using the following command:
 
 ```bash
-java -jar maturity-indicators-generator-v1.0.jar -s SOURCE_PATH -d DEST_PATH
+java -jar maturity-indicators-generator-v1.0-jar-with-dependencies.jar -s SOURCE_PATH -d DEST_PATH
 ```
 
 
