@@ -1,0 +1,45 @@
+# TITLE: ${TITLE}
+
+## Authors: 
+${AUTHORS}
+
+#### Publication Date: ${PUBLICATION_DATE}
+#### Last Edit: ${LAST_EDIT}
+#### Accepted: ${ACCEPTED}
+
+### Maturity Indicator Identifier: [${IDENTIFIER}](${IDENTIFIER_URL})
+
+${IDENTIFIER_DESC}
+
+### Maturity Indicator Name:  ${NAME}
+
+${NAME_DESC}
+
+### To which principle does it apply?  
+${WHICH_PRINCIPLE}
+
+### What is being measured?
+${WHAT_MEASURED}
+
+### Why should we measure it?
+${WHY_MEASURED}
+
+### What must be provided for the measurement?
+${WHAT_MUST_PROVIDED}
+
+### How is the measurement executed?
+${HOW_MEASUREMENT_EXECUTED}
+
+### What is/are considered valid result(s)?
+${WHAT_CONSIDERED_VALID_RESULTS}
+
+### For which digital resource(s) is this relevant? (or 'all')
+${FOR_WHICH_DIGITAL_RESOURCE} 
+
+### Examples of good practices (that would score well on this assessment)
+```{json}
+${GOOD_PRACTICE_EXAMPLE}
+```
+
+### Comments
+${COMMENTS}

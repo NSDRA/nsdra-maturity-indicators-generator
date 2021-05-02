@@ -1,0 +1,56 @@
+@prefix this: <${THIS_IRI}> .
+@prefix sub: <${SUB_IRI}> .
+@prefix fairmi: <https://w3id.org/fair/maturity_indicator/terms/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcelem: <http://purl.org/dc/elements/1.1/> .
+@prefix np: <http://www.nanopub.org/nschema#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fair: <https://w3id.org/fair/principles/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix orcid: <https://orcid.org/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+
+sub:Head {
+	this: np:hasAssertion sub:assertion .
+	this: np:hasProvenance sub:provenance .
+	this: np:hasPublicationInfo sub:pubinfo .
+	this: a np:Nanopublication .
+}
+
+sub:assertion {
+    fairmi:${IDENTIFIER} a fairmi:FAIR-Maturity-Indicator .
+    fairmi:${IDENTIFIER} rdfs:label "${TITLE}" .
+    fairmi:${IDENTIFIER} foaf:primaryTopic fair:${WHICH_PRINCIPLE} .
+    fairmi:${IDENTIFIER} fairmi:comments """${COMMENTS}""" .
+    fairmi:${IDENTIFIER} fairmi:examples """${GOOD_PRACTICE_EXAMPLE}""" .
+    fairmi:${IDENTIFIER} fairmi:measuring """${WHAT_MEASURED}""" .
+    fairmi:${IDENTIFIER} fairmi:procedure """${HOW_MEASUREMENT_EXECUTED}""" .
+    fairmi:${IDENTIFIER} fairmi:rationale """${WHY_MEASURED}""" .
+    fairmi:${IDENTIFIER} fairmi:relevance """${FOR_WHICH_DIGITAL_RESOURCE}""" .
+    fairmi:${IDENTIFIER} fairmi:requirements """${WHAT_MUST_PROVIDED}""" .
+    fairmi:${IDENTIFIER} fairmi:validation """${WHAT_CONSIDERED_VALID_RESULTS}""" .
+}
+
+sub:provenance {
+    sub:_1 dcelem:format "text/markdown" .
+    sub:_1 a void:Dataset, dcat:Distribution .
+    sub:_1 dcat:downloadURL fairmi:${IDENTIFIER}.md .
+  
+    sub:assertion pav:authoredBy ${AUTHORS_ORCIDS} .
+    sub:assertion dcat:distribution sub:_1 .
+}
+
+sub:pubinfo {
+  
+  ${AUTHORS_TRIPLES}
+  
+  this: dcterms:created "${PUBLICATION_DATE}"^^xsd:date .
+  this: dcterms:modified "${LAST_EDIT}"^^xsd:date .
+  this: dcterms:rights <https://creativecommons.org/publicdomain/zero/1.0/> .
+  this: dcterms:rightsHolder <http://maastrichtuniversity.nl> .
+  this: pav:authoredBy ${FIRST_AUTHOR} .
+  this: pav:createdBy ${FIRST_AUTHOR} .
+}
