@@ -18,7 +18,7 @@
 *
 */
 
-package io.github.ammar257ammar.maturityIndicatorsGenerator;
+package io.github.ammar257ammar.fair.nsdra.mi.generator;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;

@@ -18,7 +18,7 @@
 *
 */
 
-package io.github.ammar257ammar.maturityIndicatorsGenerator.entity;
+package io.github.ammar257ammar.fair.nsdra.mi.generator.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
