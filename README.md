@@ -1,5 +1,7 @@
 # FAIR Maturity Indicators Generator for NanoSafety Data Reusability 
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/00de6e47d08749388312ffaf71080e56)](https://www.codacy.com/gh/ammar257ammar/nsdra-maturity-indicators-generator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ammar257ammar/nsdra-maturity-indicators-generator&amp;utm_campaign=Badge_Grade) ![GitHub top language](https://img.shields.io/github/languages/top/ammar257ammar/nsdra-maturity-indicators-generator) ![Lines of code](https://img.shields.io/tokei/lines/github/ammar257ammar/nsdra-maturity-indicators-generator) ![GitHub](https://img.shields.io/github/license/ammar257ammar/nsdra-maturity-indicators-generator) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ammar257ammar/nsdra-maturity-indicators-generator) 
+
 This repository aims at providing a tool to generate maturity indicators description (in Markdown and Nanopublication formats) from Java properties files and following the [FairMetrics](https://github.com/FAIRMetrics) templates.
 
 ## Usage
