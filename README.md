@@ -21,8 +21,7 @@ DEST_PATH: is the path where the generated maturity indicators (Markdown & Nanop
 1- clone this repository and "cd" into its directory ([maven](https://maven.apache.org/download.cgi) is needed for the following commands).
 
 ```bash
-mvn verify clean --fail-never
-mvn package 
+mvn package -DskipTests 
 ```
 
 2- Run the built JAR file using the following command:
