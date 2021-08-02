@@ -1,4 +1,4 @@
-package io.github.ammar257ammar.maturity_indicators_generator;
+package io.github.ammar257ammar.fair.nsdra.mi.generator;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -33,6 +33,5 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
     }
 }
