@@ -34,4 +34,4 @@ java -jar maturity-indicators-generator-v1.0-jar-with-dependencies.jar -s SOURCE
 
 SOURCE_PATH: is the path of the maturity indicators defined as Java properties files. There is 11 lists of maturity indicators created to assess reusability of NanoSafety data can be downloaded from https://github.com/NSDRA/fair-maturity-indicators-props
 
-DEST_PATH: is the path where the generated maturity indicators (Markdown & Nanopublication) will be placed, along with a JSON file describing the lists (needed for the [JSON-LD generator web app](https://github.com/NSDRA/fair-maturity-indicators-jsonld-webapp)).
+DEST_PATH: is the path where the generated maturity indicators (Markdown & Nanopublication) will be placed, along with a JSON file describing the lists (needed for the [JSON-LD generator web app](https://github.com/NSDRA/nsdra-maturity-indicators-jsonld-webapp)).
