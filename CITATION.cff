@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Ammar
+    given-names: Ammar
+title: "FAIR Maturity Indicators Generator for NanoSafety Data Reusability"
+version: v1.1
+date-released: 2021-08-03
+url: "https://github.com/NSDRA/nsdra-maturity-indicators-generator"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Ammar
+      given-names: Ammar
+    - family-names: Evelo
+      given-names: Chris T.
+    - family-names: Willighagen
+      given-names: Egon L.
+  title: "FAIR assessment of nanosafety data reusability with community standards"
+  year: 2022
+  month: 7
+  day: 6
+  journal: ChemRxiv
+  doi: 10.26434/chemrxiv-2022-l8vk8-v2
+  url: https://doi.org/10.26434/chemrxiv-2022-l8vk8-v2
