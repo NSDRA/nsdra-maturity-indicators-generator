@@ -34,8 +34,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,8 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.xml.bind.DatatypeConverter;
 
 import org.eclipse.rdf4j.model.Model;
 import org.eclipse.rdf4j.model.impl.LinkedHashModel;
@@ -71,7 +67,7 @@ import freemarker.template.Version;
 import io.github.ammar257ammar.fair.nsdra.mi.generator.entity.GoodExample;
 
 /**
- * A utility class to generate maturity indicatrs markdown and nanopublication.
+ * A utility class to generate maturity indicators markdown and nanopublication.
  * from Java properties files, and to generate a JSON representation of them
  *
  * @author Ammar Ammar
@@ -90,6 +86,16 @@ public final class MiUtils {
    */
   public static final int IDENTIATION_LENGTH = 4;
 
+  /**
+   * The URL prefix for MI link generation.
+   */
+  public static final String MI_LINK_PREFIX = "https://w3id.org/nsdra/maturity-indicator/readme/";
+
+  /**
+   * The URL suffix for MI link generation.
+   */
+  public static final String MI_LINK_SUFFIX = "";
+
   private MiUtils() {
     throw new IllegalStateException("Utility class");
   }
@@ -105,7 +111,8 @@ public final class MiUtils {
    * @throws IOException
    */
   public static void generateJsonFromMiLists(final String path,
-      final String destJsonFile) throws FileNotFoundException, IOException {
+      final String destJsonFile)
+      throws FileNotFoundException, IOException {
 
     File[] miLists = new File(path).listFiles();
 
@@ -134,21 +141,21 @@ public final class MiUtils {
             try (BufferedReader br = new BufferedReader(
                 new FileReader(miProp))) {
 
-              boolean titePassed = false;
+              boolean titlePassed = false;
 
               String line;
 
               while ((line = br.readLine()) != null) {
 
                 if (line.startsWith("## List")) {
-                  titePassed = true;
+                  titlePassed = true;
                   continue;
                 } else {
-                  if (titePassed && !line.trim().equals("")) {
+                  if (titlePassed && !line.trim().equals("")) {
 
                     jsonListDesc.put("title", line.trim());
 
-                    titePassed = false;
+                    titlePassed = false;
                   }
                 }
 
@@ -212,9 +219,14 @@ public final class MiUtils {
               GoodExample example = objectMapper.readValue(compactContent,
                   GoodExample.class);
 
+              jsonListItem.put("mi_id", properties.getProperty("IDENTIFIER"));
               jsonListItem.put("name", properties.getProperty("NAME"));
               jsonListItem.put("variable",
                   example.getVariableMeasured().getName());
+              jsonListItem.put("url",
+                  MI_LINK_PREFIX
+                      + miProp.getParentFile().getName() + "/"
+                      + properties.getProperty("IDENTIFIER") + ".md");
 
               jsonListItems.put(jsonListItem);
 
@@ -247,7 +259,8 @@ public final class MiUtils {
    * @throws IOException
    */
   public static int generateMaturityIndicators(final String path,
-      final String destPath, final int countUpdated) throws IOException {
+      final String destPath, final int countUpdated)
+      throws IOException {
 
     int tempCount = countUpdated;
 
@@ -346,7 +359,7 @@ public final class MiUtils {
             mapMD.put("IDENTIFIER_DESC",
                 properties.getProperty("IDENTIFIER_DESC"));
             mapMD.put("IDENTIFIER_URL",
-                "https://w3id.org/fair/maturity_indicator/terms/Gen2/"
+                "https://w3id.org/nsdra/maturity-indicator/readme/"
                     + properties.getProperty("IDENTIFIER"));
 
             mapMD.put("NAME", properties.getProperty("NAME"));
@@ -396,18 +409,11 @@ public final class MiUtils {
             mapNP.put("COMMENTS",
                 properties.getProperty("COMMENTS").replace("\"", "\\\""));
 
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(properties.getProperty("PUBLICATION_DATE").getBytes());
+            String thisIRI = "https://w3id.org/nsdra/maturity-indicator/np/"
+                + properties.getProperty("IDENTIFIER");
 
-            byte[] digest = md.digest();
-
-            String dateHash = DatatypeConverter.printHexBinary(digest)
-                .toLowerCase();
-            String thisIRI = "https://w3id.org/fair/maturity_indicator/np/Gen2/"
-                + properties.getProperty("IDENTIFIER") + "/" + dateHash;
-
-            mapNP.put("THIS_IRI", thisIRI);
-            mapNP.put("SUB_IRI", thisIRI + "#");
+            mapNP.put("THIS_IRI", thisIRI + "/");
+            //mapNP.put("SUB_IRI", thisIRI + "#");
 
             templateMD.process(mapMD, bwMD);
             bwMD.flush();
@@ -429,8 +435,6 @@ public final class MiUtils {
             e.printStackTrace();
           } catch (TemplateException e) {
             e.printStackTrace();
-          } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
           }
         }
       }
@@ -451,17 +455,14 @@ public final class MiUtils {
    * @param map
    */
   private static void buildReadme(final String path, final String destPath,
-      final Map<String, String> map) {
-
-    String url = "https://github.com"
-        + "/ammar257ammar/NanoMaturityIndicators/blob/main/";
+     final Map<String, String> map) {
 
     StringBuffer mis = new StringBuffer();
 
     for (Map.Entry<String, String> entry : map.entrySet()) {
 
-      mis.append(
-          "1. " + entry.getValue() + " [link](" + url + entry.getKey() + ")");
+      mis.append("1. " + entry.getValue() + " [link](" + MI_LINK_PREFIX
+          + entry.getKey() + ")");
       mis.append(System.lineSeparator());
     }
 

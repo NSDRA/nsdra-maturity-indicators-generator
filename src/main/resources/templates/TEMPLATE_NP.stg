@@ -1,6 +1,6 @@
-@prefix this: <${THIS_IRI}> .
-@prefix sub: <${SUB_IRI}> .
-@prefix fairmi: <https://w3id.org/fair/maturity_indicator/terms/> .
+@prefix : <${THIS_IRI}> .
+@prefix fairmi: <https://w3id.org/fair/maturity_indicator/terms/Gen2/> .
+@prefix nsdrami: <https://w3id.org/nsdra/maturity-indicator/vocab/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix dcelem: <http://purl.org/dc/elements/1.1/> .
 @prefix np: <http://www.nanopub.org/nschema#> .
@@ -13,44 +13,44 @@
 @prefix orcid: <https://orcid.org/> .
 @prefix void: <http://rdfs.org/ns/void#> .
 
-sub:Head {
-	this: np:hasAssertion sub:assertion .
-	this: np:hasProvenance sub:provenance .
-	this: np:hasPublicationInfo sub:pubinfo .
-	this: a np:Nanopublication .
+:Head {
+	: np:hasAssertion :assertion .
+	: np:hasProvenance :provenance .
+	: np:hasPublicationInfo :pubinfo .
+	: a np:Nanopublication .
 }
 
-sub:assertion {
-    fairmi:${IDENTIFIER} a fairmi:FAIR-Maturity-Indicator .
-    fairmi:${IDENTIFIER} rdfs:label "${TITLE}" .
-    fairmi:${IDENTIFIER} foaf:primaryTopic fair:${WHICH_PRINCIPLE} .
-    fairmi:${IDENTIFIER} fairmi:comments """${COMMENTS}""" .
-    fairmi:${IDENTIFIER} fairmi:examples """${GOOD_PRACTICE_EXAMPLE}""" .
-    fairmi:${IDENTIFIER} fairmi:measuring """${WHAT_MEASURED}""" .
-    fairmi:${IDENTIFIER} fairmi:procedure """${HOW_MEASUREMENT_EXECUTED}""" .
-    fairmi:${IDENTIFIER} fairmi:rationale """${WHY_MEASURED}""" .
-    fairmi:${IDENTIFIER} fairmi:relevance """${FOR_WHICH_DIGITAL_RESOURCE}""" .
-    fairmi:${IDENTIFIER} fairmi:requirements """${WHAT_MUST_PROVIDED}""" .
-    fairmi:${IDENTIFIER} fairmi:validation """${WHAT_CONSIDERED_VALID_RESULTS}""" .
+:assertion {
+    nsdrami:${IDENTIFIER} a fairmi:FAIR-Maturity-Indicator .
+    nsdrami:${IDENTIFIER} rdfs:label "${TITLE}" .
+    nsdrami:${IDENTIFIER} foaf:primaryTopic fair:${WHICH_PRINCIPLE} .
+    nsdrami:${IDENTIFIER} fairmi:comments """${COMMENTS}""" .
+    nsdrami:${IDENTIFIER} fairmi:examples """${GOOD_PRACTICE_EXAMPLE}""" .
+    nsdrami:${IDENTIFIER} fairmi:measuring """${WHAT_MEASURED}""" .
+    nsdrami:${IDENTIFIER} fairmi:procedure """${HOW_MEASUREMENT_EXECUTED}""" .
+    nsdrami:${IDENTIFIER} fairmi:rationale """${WHY_MEASURED}""" .
+    nsdrami:${IDENTIFIER} fairmi:relevance """${FOR_WHICH_DIGITAL_RESOURCE}""" .
+    nsdrami:${IDENTIFIER} fairmi:requirements """${WHAT_MUST_PROVIDED}""" .
+    nsdrami:${IDENTIFIER} fairmi:validation """${WHAT_CONSIDERED_VALID_RESULTS}""" .
 }
 
-sub:provenance {
-    sub:_1 dcelem:format "text/markdown" .
-    sub:_1 a void:Dataset, dcat:Distribution .
-    sub:_1 dcat:downloadURL fairmi:${IDENTIFIER}.md .
+:provenance {
+    _:dist1 dcelem:format "text/markdown" .
+    _:dist1 a void:Dataset, dcat:Distribution .
+    _:dist1 dcat:downloadURL nsdrami:${IDENTIFIER}.md .
   
-    sub:assertion pav:authoredBy ${AUTHORS_ORCIDS} .
-    sub:assertion dcat:distribution sub:_1 .
+    :assertion pav:authoredBy ${AUTHORS_ORCIDS} .
+    :assertion dcat:distribution _:dist1 .
 }
 
-sub:pubinfo {
+:pubinfo {
   
   ${AUTHORS_TRIPLES}
   
-  this: dcterms:created "${PUBLICATION_DATE}"^^xsd:date .
-  this: dcterms:modified "${LAST_EDIT}"^^xsd:date .
-  this: dcterms:rights <https://creativecommons.org/publicdomain/zero/1.0/> .
-  this: dcterms:rightsHolder <http://maastrichtuniversity.nl> .
-  this: pav:authoredBy ${FIRST_AUTHOR} .
-  this: pav:createdBy ${FIRST_AUTHOR} .
+  : dcterms:created "${PUBLICATION_DATE}"^^xsd:date .
+  : dcterms:modified "${LAST_EDIT}"^^xsd:date .
+  : dcterms:rights <https://creativecommons.org/publicdomain/zero/1.0/> .
+  : dcterms:rightsHolder <http://maastrichtuniversity.nl> .
+  : pav:authoredBy ${FIRST_AUTHOR} .
+  : pav:createdBy ${FIRST_AUTHOR} .
 }
